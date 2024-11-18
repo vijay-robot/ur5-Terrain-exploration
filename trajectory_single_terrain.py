@@ -9,9 +9,10 @@ start_pose = rtde_r.getActualTCPPose()  # Returns [x, y, z, rx, ry, rz] in meter
 print('start_pose = ', start_pose)
 initial_pose = start_pose
 
-ds = 0.1298 #displacement in y and z axis for the coir
-ds1 = -0.1298
+ds = 0.130 #displacement in y and z axis for the coir
+ds1 = 0.130
 dx = 0.3 #displacement in x axis, distance to move to the next terrain
+dxx = 0.05
 
 #Each trajectory is one cycle
 
@@ -20,35 +21,35 @@ trajectory1 = [
     start_pose,  # Start at the actual pose
     [start_pose[0], start_pose[1], start_pose[2]- ds, start_pose[3], start_pose[4], start_pose[5]],  # 1 Move -5 cm along the z
     [start_pose[0], start_pose[1], start_pose[2], start_pose[3], start_pose[4], start_pose[5]],  # 1 Move +5 cm on z
-    [start_pose[0] -ds, start_pose[1] , start_pose[2], start_pose[3], start_pose[4], start_pose[5]],  #1 Move right in y
-    [start_pose[0] - ds, start_pose[1] , start_pose[2]-ds1, start_pose[3], start_pose[4], start_pose[5]], #1 Move -5 cm along the z
-    [start_pose[0], start_pose[1] - ds, start_pose[2], start_pose[3], start_pose[4], start_pose[5]], # 1 Move +5 cm on z
-    [start_pose[0], start_pose[1] - 2*ds, start_pose[2], start_pose[3], start_pose[4], start_pose[5]], #1 Move -5 cm on y
-    [start_pose[0], start_pose[1] - 2*ds, start_pose[2]-ds1, start_pose[3], start_pose[4], start_pose[5]], #1 Move -5 on z
-    [start_pose[0], start_pose[1] - 2*ds, start_pose[2], start_pose[3], start_pose[4], start_pose[5]], #1 move +5 on z
-    [start_pose[0], start_pose[1] - 3*ds, start_pose[2], start_pose[3], start_pose[4], start_pose[5]], #1 Move -5 cm on y
-    [start_pose[0], start_pose[1] - 3*ds, start_pose[2]-ds1, start_pose[3], start_pose[4], start_pose[5]], #1 Move -5 on z
-    [start_pose[0], start_pose[1] - 3*ds, start_pose[2], start_pose[3], start_pose[4], start_pose[5]], #1 move +5 on z	: #2 begins with x position
+    [start_pose[0] - dxx, start_pose[1], start_pose[2], start_pose[3], start_pose[4], start_pose[5]],  #1 Move right in y
+    [start_pose[0] -dxx, start_pose[1] , start_pose[2]-ds, start_pose[3], start_pose[4], start_pose[5]], #1 Move -5 cm along the z
+    [start_pose[0] - dxx, start_pose[1] , start_pose[2], start_pose[3], start_pose[4], start_pose[5]], # 1 Move +5 cm on z
+    [start_pose[0] - 2*dxx, start_pose[1] , start_pose[2], start_pose[3], start_pose[4], start_pose[5]], #1 Move -5 cm on y
+    [start_pose[0] - 2*dxx, start_pose[1] , start_pose[2]-ds1, start_pose[3], start_pose[4], start_pose[5]], #1 Move -5 on z
+    [start_pose[0] - 2*dxx, start_pose[1] , start_pose[2], start_pose[3], start_pose[4], start_pose[5]], #1 move +5 on z
+    [start_pose[0] - 3*dxx, start_pose[1] , start_pose[2], start_pose[3], start_pose[4], start_pose[5]], #1 Move -5 cm on y
+    [start_pose[0] - 3*dxx, start_pose[1] , start_pose[2]-ds1, start_pose[3], start_pose[4], start_pose[5]], #1 Move -5 on z
+    [start_pose[0] - 3*dxx, start_pose[1] , start_pose[2], start_pose[3], start_pose[4], start_pose[5]] #1 move +5 on z	: #2 begins with x position
 
-    [start_pose[0] - dx, start_pose[1] - 3*ds, start_pose[2], start_pose[3], start_pose[4], start_pose[5]], #2 move to X for next cycle
-    [start_pose[0] - dx, start_pose[1] - 3*ds, start_pose[2] - ds, start_pose[3], start_pose[4], start_pose[5]], # 2 Move -5 cm along the z
-    [start_pose[0] - dx, start_pose[1] - 3*ds, start_pose[2] , start_pose[3], start_pose[4], start_pose[5]], # 2 Move +5 cm along the z
-    [start_pose[0] - dx, start_pose[1] - 2*ds, start_pose[2] , start_pose[3], start_pose[4], start_pose[5]], # 2 Move left on y
-    [start_pose[0] - dx, start_pose[1] - 2*ds, start_pose[2] - ds, start_pose[3], start_pose[4], start_pose[5]], # 2 Move -5 cm along the z
-    [start_pose[0] - dx, start_pose[1] - 2*ds, start_pose[2] , start_pose[3], start_pose[4], start_pose[5]], # 2 Move +5 cm along the z
-    [start_pose[0] - dx, start_pose[1] - ds, start_pose[2] , start_pose[3], start_pose[4], start_pose[5]], # 2 Move left on y
-    [start_pose[0] - dx, start_pose[1] - ds, start_pose[2] - ds , start_pose[3], start_pose[4], start_pose[5]], # 2 Move -5 cm along the z
-    [start_pose[0] - dx, start_pose[1] - ds, start_pose[2] , start_pose[3], start_pose[4], start_pose[5]], # 2 move +5 cm on z
-    [start_pose[0] - dx, start_pose[1] , start_pose[2] , start_pose[3], start_pose[4], start_pose[5]], # 2 move left on y
-    [start_pose[0] - dx, start_pose[1] , start_pose[2] - ds , start_pose[3], start_pose[4], start_pose[5]], # 2 move -5 cm on z
-    [start_pose[0] - dx, start_pose[1] , start_pose[2] , start_pose[3], start_pose[4], start_pose[5]] # 2 move +5 cm on z
+    # [start_pose[0] - dx, start_pose[1] - 3*ds, start_pose[2], start_pose[3], start_pose[4], start_pose[5]], #2 move to X for next cycle
+    # [start_pose[0] - dx, start_pose[1] - 3*ds, start_pose[2] - ds, start_pose[3], start_pose[4], start_pose[5]], # 2 Move -5 cm along the z
+    # [start_pose[0] - dx, start_pose[1] - 3*ds, start_pose[2] , start_pose[3], start_pose[4], start_pose[5]], # 2 Move +5 cm along the z
+    # [start_pose[0] - dx, start_pose[1] - 2*ds, start_pose[2] , start_pose[3], start_pose[4], start_pose[5]], # 2 Move left on y
+    # [start_pose[0] - dx, start_pose[1] - 2*ds, start_pose[2] - ds, start_pose[3], start_pose[4], start_pose[5]], # 2 Move -5 cm along the z
+    # [start_pose[0] - dx, start_pose[1] - 2*ds, start_pose[2] , start_pose[3], start_pose[4], start_pose[5]], # 2 Move +5 cm along the z
+    # [start_pose[0] - dx, start_pose[1] - ds, start_pose[2] , start_pose[3], start_pose[4], start_pose[5]], # 2 Move left on y
+    # [start_pose[0] - dx, start_pose[1] - ds, start_pose[2] - ds , start_pose[3], start_pose[4], start_pose[5]], # 2 Move -5 cm along the z
+    # [start_pose[0] - dx, start_pose[1] - ds, start_pose[2] , start_pose[3], start_pose[4], start_pose[5]], # 2 move +5 cm on z
+    # [start_pose[0] - dx, start_pose[1] , start_pose[2] , start_pose[3], start_pose[4], start_pose[5]], # 2 move left on y
+    # [start_pose[0] - dx, start_pose[1] , start_pose[2] - ds , start_pose[3], start_pose[4], start_pose[5]], # 2 move -5 cm on z
+    # [start_pose[0] - dx, start_pose[1] , start_pose[2] , start_pose[3], start_pose[4], start_pose[5]] # 2 move +5 cm on z
 
 ]
 
 def move_along_trajectory(trajectory, acceleration=0.07, velocity=0.2): # for the first cycle only
     for pose in trajectory:
         rtde_c.moveL(pose, acceleration, velocity)
-        time.sleep(3)  # Wait for 1 second at each pose (optional, for demonstration purposes)
+        time.sleep(2)  # Wait for 3 second at each pose (optional, for demonstration purposes)
         print(pose)
 
 #this is the second trajectory, without the initial pose and generalized to be called multiple times
@@ -117,11 +118,11 @@ time.sleep(1)
 count = 1
 print ('cycle = ',count,' ,x=', 0)
 
-x=2                             #next trajectory
-move_along_trajectory_t(x,dx)
-count = count + 1
-print ('cycle = ',count,' ,x=', x)
-time.sleep(1)
+# x=2                             #next trajectory
+# move_along_trajectory_t(x,dx)
+# count = count + 1
+# print ('cycle = ',count,' ,x=', x)
+# time.sleep(1)
 
 
 rtde_c.moveL(initial_pose,0.08, 0.8) #return to initial position

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Set up serial port and parameters
-port = 'COM7'  # Update this to match your system
+port = 'COM5'  # Update this to match your system
 baud_rate = 9600
 ser = serial.Serial(port, baud_rate, timeout=1)
 time.sleep(2)  # Wait for Arduino to reset

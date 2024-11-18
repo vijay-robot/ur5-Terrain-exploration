@@ -1,16 +1,17 @@
 import rtde_control
 import rtde_receive
 import time
-rtde_r = rtde_receive.RTDEReceiveInterface("169.254.123.175")
-rtde_c = rtde_control.RTDEControlInterface("169.254.123.175")
+IP_address = "169.254.89.186"
+rtde_r = rtde_receive.RTDEReceiveInterface(IP_address)
+rtde_c = rtde_control.RTDEControlInterface(IP_address)
 current_pose = rtde_r.getActualTCPPose()  # Returns [x, y, z, rx, ry, rz] in meters and radians
 #actual_q = rtde_r.getActualQ()
 #print(actual_q)
-print(current_pose)
+print("current_pose = ", current_pose)
 initial_pose = current_pose
 
 # Define incremental movement for joints (in radians)
-dq = [0.02, 0.0, -0.095, 0, 0, 0]  # Example increments for each joint
+dq = [0.00, 0.0, -0.130, 0, 0, 0]  # Example increments for each joint
 
 # Calculate the new joint positions by adding the increments
 #new_q = [actual_q[i] + dq[i] for i in range(len(actual_q))]
