@@ -1,5 +1,5 @@
-#program to run plotting and Ur5 program in one thread
-
+#program to run plotting and Ur5 program in one thread, not required
+#not used
 import threading
 import serial
 import time

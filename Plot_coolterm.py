@@ -1,8 +1,17 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
-# Path to your CSV file
-csv_file_path = r"C:\Users\vjc28\OneDrive\Documents\BIRL_UC\Terrain_sensingcode\terraindata\Leg_duty\SP\SP_c3_d1.txt"
+# Path to your CSV file, 'r' means raw string, important if you use back-slash
+base_dir = r"C:\Users\vjc28\OneDrive\Documents\BIRL_UC\Terrain_sensingcode\terraindata\Leg_duty"
+
+# Specify the filename
+filename = r"Pebble\Pebble_c3_d1.txt"
+
+# Construct the full file path
+csv_file_path = os.path.join(base_dir, filename)
+
+#csv_file_path = r"C:\Users\vjc28\OneDrive\Documents\BIRL_UC\Terrain_sensingcode\terraindata\Leg_duty\SP\SP_c3_d1.txt"
 
 # Load data from the CSV file
 data = pd.read_csv(csv_file_path)
