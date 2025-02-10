@@ -1,3 +1,4 @@
+# code to plot in real time while reading from UR5 (not required)
 import serial
 import time
 import matplotlib.pyplot as plt
